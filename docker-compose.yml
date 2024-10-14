@@ -1,0 +1,25 @@
+version: '3'
+services:
+  mongodb-container:
+    image: mongo:latest
+    container_name: mongodb1
+    ports:
+      - "27017:27017"
+    networks:
+      - my-network
+
+  springboot-app:
+    image: springboot-app
+    container_name: springboot-app
+    environment:
+      - SPRING_PROFILES_ACTIVE=docker
+    ports:
+      - "8081:8081"
+    depends_on:
+      - mongodb-container
+    networks:
+      - my-network
+
+networks:
+  my-network:
+    driver: bridge
