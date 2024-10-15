@@ -1,8 +1,13 @@
 pipeline {
-    agent any
+    agent {
+        docker {
+            image 'docker:latest' // Docker image utilisée pour exécuter les étapes du pipeline
+            args '-v /var/run/docker.sock:/var/run/docker.sock' // Montage du socket Docker pour accéder au daemon Docker
+        }
+    }
     environment {
-        DOCKER_HUB_REPO = 'sadokgaied/pipeline1'  // Votre dépôt DockerHub
-        DOCKER_CREDENTIALS_ID = 'sadok1'  // ID des credentials DockerHub enregistrés dans Jenkins
+        DOCKER_HUB_REPO = 'sadokgaied/pipeline1'  // Nom de votre dépôt DockerHub
+        DOCKER_CREDENTIALS_ID = 'sadok1'  // ID des credentials DockerHub
     }
     stages {
         stage('Checkout') {
