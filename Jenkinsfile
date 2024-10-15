@@ -1,9 +1,6 @@
 pipeline {
     agent any
-    environment {
-        DOCKER_HUB_REPO = 'sadokgaied/pipeline1'  // Votre dépôt DockerHub
-        DOCKER_CREDENTIALS_ID = 'sadoksadok'  // ID des credentials DockerHub enregistrés dans Jenkins
-    }
+
     stages {
         stage('Checkout') {
             steps {
