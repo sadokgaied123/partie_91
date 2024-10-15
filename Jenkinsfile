@@ -1,9 +1,6 @@
 pipeline {
     agent {
-        docker {
-            image 'docker:latest' // Docker image utilisée pour exécuter les étapes du pipeline
-            args '-v /var/run/docker.sock:/var/run/docker.sock' // Montage du socket Docker pour accéder au daemon Docker
-        }
+        label 'docker'  // Spécifie un agent labelisé avec Docker
     }
     environment {
         DOCKER_HUB_REPO = 'sadokgaied/pipeline1'  // Nom de votre dépôt DockerHub
